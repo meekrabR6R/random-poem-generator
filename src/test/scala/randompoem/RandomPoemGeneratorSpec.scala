@@ -12,4 +12,16 @@ class RandomPoemGeneratorSpec extends FlatSpec with Matchers {
   "Poem" should "have 5 lines" in {
     poemMaker.poem.lines.count(_ => true) should be === 5
   }
+
+  "Parsing a word" should "return the word prepended with a space" in {
+    poemMaker.parse("spongebob") should be === "spongebob "
+  }
+
+  "Parsing a $LINEBREAK" should "return a newline" in {
+    poemMaker.parse("$LINEBREAK") should be === "\n"
+  }
+
+  "Parsing a $END" should "return a 0 length String" in {
+    poemMaker.parse("$END") should be === ""
+  }
 }
